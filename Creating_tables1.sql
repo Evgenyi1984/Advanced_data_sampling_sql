@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Список_исполнителей (
 CREATE TABLE IF NOT EXISTS Список_альбомов (
 	id SERIAL PRIMARY KEY,
 	Название VARCHAR(180) NOT NULL,
-	год_выпуска DATE CHECK (год_выпуска > '1900-01-01')
+	год_выпуска integer check (год_выпуска > '1900')
 );
 
 
@@ -20,17 +20,14 @@ CREATE TABLE IF NOT EXISTS Список_альбомов (
 CREATE TABLE IF NOT EXISTS Список_трекеров (
 	id SERIAL PRIMARY key ,
 	альбом_id int REFERENCES Список_альбомов(id),
-	Название VARCHAR(180) NOT NULL,
+	Название_трека VARCHAR(180) NOT NULL,
 	длительность INTEGER not NULL
 );
-
-ALTER TABLE Список_трекеров
-RENAME COLUMN Название TO Название_трека;
 
 CREATE TABLE IF NOT exists Сборник (
 	id SERIAL PRIMARY KEY,
 	Название_сборника VARCHAR(180) NOT null,
-	Год_выпуска DATE CHECK (Год_выпуска > '1900-01-01')
+	Год_выпуска integer CHECK (Год_выпуска > '1900')
 	);
 
 CREATE TABLE IF NOT EXISTS Связь_исполнителей_и_жанров (
